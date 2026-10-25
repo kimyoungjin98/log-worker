@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
+import config from './config/mikro-orm.config.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -14,6 +16,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       appSecret: 'YOUR_APP_SECRET',
       serviceId: 'server',
     }),
+    MikroOrmModule.forRoot(config),
   ],
   controllers: [AppController],
   providers: [AppService],
